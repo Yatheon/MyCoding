@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<windows.h>
 #include <time.h>
 //todo:
@@ -55,22 +56,34 @@ void entertime(int present_time[])
     user_time = 0;
 
         printf("Enter the time: \n");
-        scanf("%d", &user_time);
+
+    char *p, s[100]; //prevents non-integer inputs
+    while (fgets(s, sizeof(s), stdin)) {
+
+         user_time = strtol(s, &p, 10);
+        if (p == s || *p != '\n') {
+                clearscr();
+                printf("Thats not a valid time!\n");
+        }
+        else break;
+
+    }
+
 
         temp_time = user_time/10000;/*Checks if entered time hh is < 24*/
         clearscr();
-        if(temp_time<24)
+        if(temp_time<24 && temp_time >= 0)
         {
         present_time[0] = temp_time;
         user_time = user_time - (temp_time * 10000);
         temp_time = user_time/100;
 
-            if (temp_time<60) /*Checks if entered time mm is < 60*/
+            if (temp_time<60 && temp_time >= 0) /*Checks if entered time mm is < 60*/
             {
             present_time[1] = temp_time;
             user_time = user_time - (temp_time * 100);
 
-                if(temp_time<60) /*Checks if entered time ss is < 60*/
+                if(temp_time<60 && temp_time >= 0) /*Checks if entered time ss is < 60*/
                 {
                 present_time[2] = user_time;
                 break;/*When the time is valid, continue program*/

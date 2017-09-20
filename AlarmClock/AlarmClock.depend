@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1505931836 source:q:\coding\mycoding\alarmclock\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+
